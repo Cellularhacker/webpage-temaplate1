@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      #menu_wrap {
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: lightcoral;
+        padding: 8px 12px;
+        color: white;
+      }
+      .menu {
+        display: flex;
+        list-style: none;
+        padding-left: 0;
+      }
+      .menu li {
+        padding: 8px 12px;
+      }
+      .sub_menu:hover {
+        background-color: indianred;
+        border-radius: 10px;
+      }
+    </style>
+    <script type="module">
+      // let menuList = [];
+      fetch("/static/menu.json")
+        .then((response) => {
+          response.json().then((menuList) => {
+            const curr = menuList[0];
+
+            // Setting Title
+            let myTitle = document.createElement("title");
+            myTitle.textContent = curr["title"];
+            document.head.appendChild(myTitle);
+
+            const menuTag = document.getElementById("menu_wrap");
+
+            let menus = document.createElement("ul");
+            menus.classList.add("menu");
+            // MARK Main Big Menu
+            for (let i = 0; i < menuList.length; i++) {
+              const cMenuInfo = menuList[i];
+              console.log(cMenuInfo);
+              let cMenu = document.createElement("li");
+              cMenu.id = cMenuInfo["id"];
+              cMenu.textContent = cMenuInfo["title"];
+              // cMenu.onclick = function () {
+              //   location.href = `${cMenuInfo["path"]}`;
+              // };
+              cMenu.classList.add("main_menu");
+
+              if (document.URL.indexOf(cMenuInfo["path"]) < 0) {
+                continue;
+              }
+              let cMenuUl = document.createElement("ul");
+              cMenuUl.classList.add("menu");
+
+              for (let j = 0; j < cMenuInfo["sub_menu"].length; j++) {
+                console.log(menuList[i]);
+                const cSubMenuInfo = cMenuInfo["sub_menu"][j];
+                let cSubMenu = document.createElement("li");
+                cSubMenu.textContent = cSubMenuInfo["title"];
+                cSubMenu.id = cSubMenuInfo["id"];
+                cSubMenu.onclick = function () {
+                  location.href = `${cMenuInfo["path"] + cSubMenuInfo["path"]}`;
+                };
+                console.log(`${cMenuInfo["path"] + cSubMenuInfo["path"]}`);
+                cSubMenu.classList.add("sub_menu");
+                cSubMenu.classList.add("menu");
+
+                cMenuUl.appendChild(cSubMenu);
+                cMenu.appendChild(cMenuUl);
+                menus.appendChild(cMenu);
+              }
+              menuTag.appendChild(menus);
+            }
+          });
+        })
+        .catch(console.error);
+    </script>
+    <script type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="container">
+      <nav id="menu_wrap">
+        <!--        <div id="menu_wrap"></div>-->
+      </nav>
+      <div id="content"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+[
+  {
+    "id": "izhisu_publishing",
+    "title": "이지스 퍼블리싱",
+    "path": "/publishing",
+    "sub_menu": [
+      {
+        "id": "company_intro",
+        "title": "회사소개",
+        "path": "/company_intro"
+      },
+      {
+        "id": "books",
+        "title": "도서",
+        "path": "/books"
+      },
+      {
+        "id": "archives",
+        "title": "자료실",
+        "path": "/archives"
+      },
+      {
+        "id": "qna",
+        "title": "질문답변",
+        "path": "/qna"
+      },
+      {
+        "id": "video_lecture",
+        "title": "동영상 강의",
+        "path": "/video_lecture"
+      },
+      {
+        "id": "intranet",
+        "title": "교∙강사 전용",
+        "path": "/intranet"
+      }
+    ]
+  },
+  {
+    "id": "izhisu_edu",
+    "title": "이지스 에듀",
+    "path": "/edu",
+    "sub_menu": []
+  }
+]
