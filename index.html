@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script type="module">
+      let menuList = [];
+      fetch("../config/config.json")
+        .then((response) => {
+          menuList = response.json();
+        })
+        .catch(console.error);
+    </script>
+    <script type="text/javascript">
+
+    </script>
+  </head>
+  <body></body>
+</html>
